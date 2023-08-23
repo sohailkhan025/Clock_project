@@ -17,7 +17,7 @@ const CloclkCricle = () => {
         if (stop) {
             setId(setInterval(() => {
                 setSecond((second) => second + 1)
-            }, 100))
+            }, 1000))
             console.log(id);
         }
 
@@ -52,9 +52,13 @@ const CloclkCricle = () => {
 
     }
     const handleLaps = () => {
-        setCounter(counter + 1);
+        if(stop){
 
-        Laps.push(` ${counter}_ ${hours} :  ${mins}  : ${second}`)
+            setCounter(counter + 1);
+    
+            Laps.push(` ${counter}_ ${hours} :  ${mins}  : ${second}`)
+
+        }
     }
 
     const handleReset = () => {

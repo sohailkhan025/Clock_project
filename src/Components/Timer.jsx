@@ -5,12 +5,13 @@ export const Timer = () => {
     const [min, setMin] = useState(0);
     const [sec, setSec] = useState(0);
     const [id, setid] = useState(false);
+    
 
     useEffect(() => {
         if (start) {
             setid(setInterval(() => {
                 setSec((sec) => sec - 1)
-            }, 100))
+            }, 1000))
             console.log(id);
         }
 
@@ -43,6 +44,9 @@ export const Timer = () => {
     }, [min, sec])
 
 
+
+
+
     useEffect(() => {
         if (start) {
 
@@ -50,11 +54,11 @@ export const Timer = () => {
                 setSec(0)
                 setMin(0)
                 sethours(0)
+               
                 setStart(false)
 
-                console.log("hero");
             } else {
-                console.log("zero");
+              
             }
 
         }
@@ -77,6 +81,14 @@ export const Timer = () => {
     const handleStartTimer = () => {
         setStart(true)
 
+    }
+    const handleStop=()=>{
+      setStart(false);
+    }
+    const handReset =()=>{
+        setMin(0)
+        sethours(0)
+        setSec(0)
     }
 
 
@@ -337,11 +349,26 @@ export const Timer = () => {
             }
 
 
+     {start ? 
+     <>            <div className="pb-5 flex justify-center">
 
+                <button onClick={handleStop} className="  rounded-xl bg-red-600  text-lg md:text-xl    h-[7vh]  md:h-[4.5vh]   md:w-[7vw]"  >Stop Timer</button>
+                </div>
+     
             <div className="pb-5 flex justify-center">
 
-                <button onClick={handleStartTimer} className="  rounded-xl bg-amber-400  text-lg md:text-xl    h-[7vh]  md:h-[4.5vh]   md:w-[7vw]"  >Set Timer</button></div>
-        </div>
+                <button onClick={handReset} className="  rounded-xl bg-yellow-500  text-lg md:text-xl    h-[7vh]  md:h-[4.5vh]   md:w-[7vw]"  >Resert</button>
+                </div>
+                </>
+
+     :
+
+     <div className="pb-5 flex justify-center">
+
+         <button onClick={handleStartTimer} className="  rounded-xl bg-green-500  text-lg md:text-xl    h-[7vh]  md:h-[4.5vh]   md:w-[7vw]"  >Set Timer</button>
+         </div>
+}
+</div>
     )
 
 }
